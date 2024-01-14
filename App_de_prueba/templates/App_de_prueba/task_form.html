@@ -1,0 +1,13 @@
+{% extends 'App_de_prueba/main.html' %}
+{% block content %}
+
+<h3>Task Form</h3>
+<a href = "{% url 'tasks' %}">Atras</a>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value = "Crear">
+
+</form>
+
+{% endblock content %}

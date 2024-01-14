@@ -1,0 +1,54 @@
+{% extends 'App_de_prueba/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <div>
+        <h1>Bienvenido {{request.user|title}}</h1>
+        <h3 style="margin:0">Tienes <i>{{count}}</i> tarea incompleta{{ count|pluralize:"s" }}</h3>
+    </div>
+    {% if request.user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="Cerrar sesión">
+      </form>
+    {% else %}
+    <a href="{% url 'login' %}">Iniciar sesion</a>
+    {% endif %}
+
+</div>
+
+
+
+<hr>
+<h1>Tareas Pendientes {{color}}</h1>
+<a href ="{% url 'task-create' %}">Añadir tarea </a>
+
+<form method="GET"> 
+    <input type="text" name="search-area" value="{{search_input}}"> 
+    <input type="submit" value="buscar">
+
+
+
+</form>
+
+
+<table>
+    <tr>
+        <th>Objetivos</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {%for task in object_list%}
+    <tr>
+        <td>{{task.title}}</td>
+        
+        <td><a href = "{% url 'task-update' task.id %}">Editar</a></td>
+        <td><a href = "{% url 'task-delete' task.id %}">Eliminar</a></td>
+    </tr>
+    {% empty %}
+    <h3>no hay objetivos en la lista</h3>
+    {% endfor %}
+</table>
+{% endblock content %}
+
+

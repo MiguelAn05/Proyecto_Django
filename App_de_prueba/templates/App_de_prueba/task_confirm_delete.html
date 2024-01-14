@@ -1,0 +1,11 @@
+{% extends 'App_de_prueba/main.html' %}
+{% block content %}
+<a href = "{% url 'tasks' %}">&#181616;Atras</a>
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Estas seguro que deseas elimnar este elemento? "{{task}}" </p>
+    <input class="button" type="submit" value="Eliminar" />
+</form>
+
+{% endblock content %}

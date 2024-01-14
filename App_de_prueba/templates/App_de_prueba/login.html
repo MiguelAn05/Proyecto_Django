@@ -1,0 +1,16 @@
+{% extends 'App_de_prueba/main.html' %}
+{% block content %}
+
+<h1>Iniciar sesion</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Iniciar sesion">
+
+</form>
+
+
+<p>No tienes cuenta? <a href="">Registrate</a></p>
+
+{% endblock content %}
